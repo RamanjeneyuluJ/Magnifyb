@@ -1,12 +1,20 @@
 package com.magnifyb.stepdefinition;
 
+import org.openqa.selenium.WebDriver;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class login {
 
+	public static WebDriver driver;
+	
 	@Given("user navigates to url")
 	public void user_navigates_to_url() {
+		
+		WebDriverManager.chromedriver().driverVersion("103.0.5060.114 ").setup();
+		driver.get("https://magnify.machint.com/home");
 	    
 	    throw new io.cucumber.java.PendingException();
 	}
