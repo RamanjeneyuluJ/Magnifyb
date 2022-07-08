@@ -1,5 +1,6 @@
 Feature: Login
 
+@login
   Scenario: Verify user is able to login to the application
     Given User navigates to url
     When User Enter username
