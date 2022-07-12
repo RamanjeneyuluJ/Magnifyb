@@ -28,6 +28,7 @@ public class MagnifyBObjects {
 	
 	//Forecasting P&L and cashflow
 	public static String forecastingButton = "//span[text()='Forecasting P&L and cashflow']";
-	
+	public static String 
+	public static String fc001= 
 
 }

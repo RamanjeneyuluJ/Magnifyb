@@ -79,13 +79,13 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		WebElement managementQuestionnaire = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(questionnaire)));
 		managementQuestionnaire.click();
-		
+
 		// Validate Management Information button
 		WebElement managementInformation = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(managementInfoButton)));
 		String managementInformation_text = managementInformation.getText();
 		Assert.assertEquals(managementInformation_text, "Management Information");
-		
+
 	}
 
 	public static void managementInformation() {
@@ -100,6 +100,7 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		WebElement mi_001 = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(mi001)));
 		mi_001.click();
+
 		// Click on "Over 15% variance" for Do your Management Accounts' Profit figures
 		// agree with those in your Year End Accounts?
 		WebElement mi_002 = new WebDriverWait(driver, Duration.ofSeconds(30))
@@ -123,7 +124,8 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(mi005)));
 		mi_005.click();
 
-		//Click on "Some Customers" for Do you have an accurate analysis of sales by Customer?
+		// Click on "Some Customers" for Do you have an accurate analysis of sales by
+		// Customer?
 		WebElement mi_006 = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(mi006)));
 		mi_006.click();
@@ -144,5 +146,10 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(nextButton)));
 		next.click();
 
+		//Validate Forecasting P&L and cashflow button
+		WebElement foreCasting = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(forecastingButton)));
+		String foreCasting_text = foreCasting.getText();
+		Assert.assertEquals(foreCasting_text, "Forecasting P&L and cashflow");
 	}
 }
