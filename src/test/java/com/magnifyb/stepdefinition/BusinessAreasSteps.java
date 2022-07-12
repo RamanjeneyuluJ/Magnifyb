@@ -24,7 +24,7 @@ public class BusinessAreasSteps extends MagnifybBusinessFunctions {
 	}
 
 	@When("user is able to click on next button clicking on all answers in Management Information")
-	public void user_is_able_to_click_on_next_button_clicking_on_all_answers_in_management_information() {
+	public void user_is_able_to_click_on_next_button_clicking_on_all_answers_in_management_information() throws Exception {
 		managementInformation();
 	}
 

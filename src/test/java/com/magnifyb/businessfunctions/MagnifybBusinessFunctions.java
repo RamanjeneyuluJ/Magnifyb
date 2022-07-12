@@ -85,10 +85,9 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(managementInfoButton)));
 		String managementInformation_text = managementInformation.getText();
 		Assert.assertEquals(managementInformation_text, "Management Information");
-
 	}
 
-	public static void managementInformation() {
+	public static void managementInformation() throws Exception {
 
 		// Validate Management Information
 		WebElement managementinformation = new WebDriverWait(driver, Duration.ofSeconds(30))
@@ -97,17 +96,20 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		Assert.assertEquals(managementInformation_Text, "Management Information");
 
 		// Click on "Never" for How often do you prepare Management Accounts
+		//1 = 1, 2 = 3, 3 = 7, 4 = 10
 		WebElement mi_001 = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(mi001)));
 		mi_001.click();
-
+		
 		// Click on "Over 15% variance" for Do your Management Accounts' Profit figures
 		// agree with those in your Year End Accounts?
+		//5 = 1, 6 = 3, 7 = 7, 8 = 10
 		WebElement mi_002 = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(mi002)));
 		mi_002.click();
 
 		// Click on "Annually" for Do you prepare a Budget
+		
 		WebElement mi_003 = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(mi003)));
 		mi_003.click();
@@ -146,10 +148,51 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(nextButton)));
 		next.click();
 
-		//Validate Forecasting P&L and cashflow button
+		// Validate Forecasting P&L and cash flow button
 		WebElement foreCasting = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(forecastingButton)));
 		String foreCasting_text = foreCasting.getText();
 		Assert.assertEquals(foreCasting_text, "Forecasting P&L and cashflow");
+	}
+
+	public static void forecasting() {
+
+		// Validate Forecasting P&L and cashflow
+		WebElement forecasting = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(foreCasting)));
+		String forecasting_Text = forecasting.getText();
+		Assert.assertEquals(forecasting_Text, "Management Information");
+
+		// Click on "Never" for Do you prepare a P&L forecast looking at the F/Y year
+		// ahead
+		WebElement fc_001 = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(fc001)));
+		fc_001.click();
+
+		// Click on "Annually" for How often do you update the P&L forecast?
+		WebElement fc_002 = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(fc002)));
+		fc_002.click();
+
+		// Click on "Annually" for How often do you update the P&L forecast?
+		WebElement fc_003 = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(fc003)));
+		fc_003.click();
+
+		// Click on "Annual" for How often do you update the P&L forecast?
+		WebElement fc_004 = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(fc004)));
+		fc_004.click();
+
+		// Click on next button
+		WebElement next = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(nextButton)));
+		next.click();
+
+		// Validate Debtor Management button
+		WebElement debtormanagement = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(managementInfoButton)));
+		String debtormanagement_text = debtormanagement.getText();
+		Assert.assertEquals(debtormanagement_text, "Management Information");
 	}
 }
