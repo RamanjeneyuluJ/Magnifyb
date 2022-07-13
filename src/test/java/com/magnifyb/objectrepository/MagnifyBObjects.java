@@ -60,7 +60,7 @@ public class MagnifyBObjects {
 	// Payroll / HR /Staff Management
 	public static String payrollButton = "//span[text()='Payroll / HR /Staff Management']";
 	public static String payroll = "//div[text()='Payroll / HR /Staff Management']";
-	public static String payroll001 = "(//div[contains(@class, 'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6')])[4]";
+	public static String payroll001 = "(//div[contains(@class, 'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6')])[3]";
 	public static String payroll002 = "(//div[contains(@class, 'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6')])[8]";
 	public static String payroll003 = "(//div[contains(@class, 'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6')])[12]";
 	public static String payroll004 = "(//div[contains(@class, 'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6')])[16]";
