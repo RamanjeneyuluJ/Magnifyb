@@ -24,13 +24,13 @@ public class BusinessAreasSteps extends MagnifybBusinessFunctions {
 	}
 
 	@When("user is able to click on next button clicking on all answers in Management Information")
-	public void user_is_able_to_click_on_next_button_clicking_on_all_answers_in_management_information() throws Exception {
+	public void user_is_able_to_click_on_next_button_clicking_on_all_answers_in_management_information() {
 		managementInformation();
 	}
 
 	@When("user is able to click on next button clicking on all answers in Forecasting P&L and cashflow")
 	public void user_is_able_to_click_on_next_button_clicking_on_all_answers_in_forecasting_p_l_and_cashflow() {
-
+		forecasting();
 	}
 
 	@When("user is able to click on next button clicking on all answers in Debtor Management")

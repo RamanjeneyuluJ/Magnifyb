@@ -87,7 +87,7 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		Assert.assertEquals(managementInformation_text, "Management Information");
 	}
 
-	public static void managementInformation() throws Exception {
+	public static void managementInformation() {
 
 		// Validate Management Information
 		WebElement managementinformation = new WebDriverWait(driver, Duration.ofSeconds(30))
@@ -95,50 +95,50 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		String managementInformation_Text = managementinformation.getText();
 		Assert.assertEquals(managementInformation_Text, "Management Information");
 
-		// Click on "Never" for How often do you prepare Management Accounts
+		// Click on for How often do you prepare Management Accounts
 		//1 = 1, 2 = 3, 3 = 7, 4 = 10
 		WebElement mi_001 = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(mi001)));
 		mi_001.click();
 		
-		// Click on "Over 15% variance" for Do your Management Accounts' Profit figures
-		// agree with those in your Year End Accounts?
+		// Click on for Do your Management Accounts' Profit figures agree with those in your Year End Accounts?
 		//5 = 1, 6 = 3, 7 = 7, 8 = 10
 		WebElement mi_002 = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(mi002)));
 		mi_002.click();
 
-		// Click on "Annually" for Do you prepare a Budget
-		
+		// Click on for Do you prepare a Budget
+		//9 = 1, 10 = 3, 11 = 7, 12 = 10
 		WebElement mi_003 = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(mi003)));
 		mi_003.click();
 
-		// Click on "Annually" for Do you have Actuals compared to Budget with a
-		// Variance
+		// Click on for Do you have Actuals compared to Budget with a Variance
+		//13 = 1, 14 = 3, 15 = 7, 16 = 10
 		WebElement mi_004 = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(mi004)));
 		mi_004.click();
 
-		// Click on "Some products" for Do you have an accurate analysis of Gross margin
-		// by product?
+		// Click on for Do you have an accurate analysis of Gross margin by product?
+		//17 = 1, 18 = 3, 19 = 7, 20 = 10
 		WebElement mi_005 = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(mi005)));
 		mi_005.click();
 
-		// Click on "Some Customers" for Do you have an accurate analysis of sales by
-		// Customer?
+		// Click on for Do you have an accurate analysis of sales by Customer?
+		//21 = 1, 22 = 3, 23 = 7, 24 = 10
 		WebElement mi_006 = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(mi006)));
 		mi_006.click();
 
-		// Click on "Some Customers" for Do you have an accurate analysis of gross
-		// Margin by Customer?
+		// Click on for Do you have an accurate analysis of gross Margin by Customer?
+		//25 = 1, 26 = 3, 27 = 7, 28 = 10
 		WebElement mi_007 = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(mi007)));
 		mi_007.click();
 
-		// Click on Quarterly for How often do you review costs & look for savings?
+		// Click on for How often do you review costs & look for savings?
+		//29 = 1, 30 = 3, 31 = 7, 32 = 10
 		WebElement mi_008 = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(mi008)));
 		mi_008.click();
@@ -157,29 +157,32 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 
 	public static void forecasting() {
 
-		// Validate Forecasting P&L and cashflow
+		// Validate Forecasting P&L and cash flow
 		WebElement forecasting = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(foreCasting)));
 		String forecasting_Text = forecasting.getText();
 		Assert.assertEquals(forecasting_Text, "Management Information");
 
-		// Click on "Never" for Do you prepare a P&L forecast looking at the F/Y year
-		// ahead
+		// Click on for Do you prepare a P&L forecast looking at the F/Y year ahead
+		//1 = 1, 2 = 3, 3 = 7, 4 = 10
 		WebElement fc_001 = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(fc001)));
 		fc_001.click();
 
-		// Click on "Annually" for How often do you update the P&L forecast?
+		// Click on for How often do you update the P&L forecast?
+		//5 = 1, 6 = 3, 7 = 7, 8 = 10
 		WebElement fc_002 = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(fc002)));
 		fc_002.click();
 
-		// Click on "Annually" for How often do you update the P&L forecast?
+		// Click on for How often do you update the P&L forecast?
+		//9 = 1, 10 = 3, 11 = 7, 12 = 10
 		WebElement fc_003 = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(fc003)));
 		fc_003.click();
 
-		// Click on "Annual" for How often do you update the P&L forecast?
+		// Click on for How often do you update the P&L forecast?
+		//13 = 1, 14 = 3, 15 = 7, 16 = 10
 		WebElement fc_004 = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(fc004)));
 		fc_004.click();
@@ -191,8 +194,8 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 
 		// Validate Debtor Management button
 		WebElement debtormanagement = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(managementInfoButton)));
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(debtorManagementButton)));
 		String debtormanagement_text = debtormanagement.getText();
-		Assert.assertEquals(debtormanagement_text, "Management Information");
+		Assert.assertEquals(debtormanagement_text, "Debtor Management");
 	}
 }
