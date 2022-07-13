@@ -35,42 +35,48 @@ public class BusinessAreasSteps extends MagnifybBusinessFunctions {
 
 	@When("user is able to click on next button clicking on all answers in Debtor Management")
 	public void user_is_able_to_click_on_next_button_clicking_on_all_answers_in_debtor_management() {
-
+		debtorManagement();
 	}
 
 	@When("user is able to click on next button clicking on all answers in Creditor Management")
 	public void user_is_able_to_click_on_next_button_clicking_on_all_answers_in_creditor_management() {
-
+		creditorManagement();
 	}
 
 	@When("user is able to click on next button clicking on all answers in Payroll\\/HR\\/Staff Management")
 	public void user_is_able_to_click_on_next_button_clicking_on_all_answers_in_payroll_hr_staff_management() {
-
+		payroll();
 	}
 
 	@When("user is able to click on next button clicking on all answers in Stock Management")
 	public void user_is_able_to_click_on_next_button_clicking_on_all_answers_in_stock_management() {
-
+		stockManagement();
 	}
 
 	@When("user is able to click on next button clicking on all answers in HMRC-Payments")
 	public void user_is_able_to_click_on_next_button_clicking_on_all_answers_in_hmrc_payments() {
-
+		hmrc();
 	}
 
 	@When("user is able to click on next button clicking on all answers in Fixed Assets\\/Capital Expenditure")
 	public void user_is_able_to_click_on_next_button_clicking_on_all_answers_in_fixed_assets_capital_expenditure() {
-
+		fixedAssets();
 	}
 
 	@When("user is able to click on submit button clicking on all answers in Finance")
 	public void user_is_able_to_click_on_submit_button_clicking_on_all_answers_in_finance() {
-
+		finance();
 	}
 
 	@Then("user validate Your Business Overview, using our AI-based Scoring values")
-	public void user_validate_your_business_overview_using_our_ai_based_scoring_values() {
+	public void user_validate_your_business_overview_using_our_ai_based_scoring_values() throws Exception {
 
+		Thread.sleep(30000);
+	}
+	
+	@Then("user close the broswer")
+	public void user_close_the_broswer() {
+	    driver.close();
 	}
 
 }

@@ -15,4 +15,5 @@ Scenario: Business areas flow
 	And user is able to click on next button clicking on all answers in Fixed Assets/Capital Expenditure
 	And user is able to click on submit button clicking on all answers in Finance
 	Then user validate Your Business Overview, using our AI-based Scoring values
+	And user close the broswer
 	
