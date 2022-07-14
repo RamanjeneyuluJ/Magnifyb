@@ -8,10 +8,10 @@ import io.cucumber.java.en.When;
 
 public class BusinessAreasSteps extends MagnifybBusinessFunctions {
 
-	@Given("user navigates to url")
-	public void user_navigates_to_url() {
-		navigateUrl();
-	}
+//	@Given("user navigates to url")
+//	public void user_navigates_to_url() {
+//		navigateUrl();
+//	}
 
 	@When("user login sucessfully with valid credentials")
 	public void user_login_sucessfully_with_valid_credentials() throws Exception {

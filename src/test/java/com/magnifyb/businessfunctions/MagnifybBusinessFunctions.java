@@ -1,6 +1,7 @@
 package com.magnifyb.businessfunctions;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -20,6 +21,8 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 
 	public static WebDriver driver;
 
+	public static String actual, expected;
+
 	public static int xpath1 = 1, xpath2 = 3, xpath3 = 7, xpath4 = 10, xpath5 = 1, xpath6 = 3, xpath7 = 7, xpath8 = 10,
 			xpath9 = 1, xpath10 = 3, xpath11 = 7, xpath12 = 10, xpath13 = 1, xpath14 = 3, xpath15 = 7, xpath16 = 10,
 			xpath17 = 1, xpath18 = 3, xpath19 = 7, xpath20 = 10, xpath21 = 1, xpath22 = 3, xpath23 = 7, xpath24 = 10,
@@ -29,8 +32,363 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 	public static void navigateUrl() {
 		WebDriverManager.chromedriver().driverVersion("103.0.5060.114").setup();
 		driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
-		driver.get("https://magnifywebtest.machint.com/home");
+		driver.get("https://magnify.machint.com/home");
+	}
+
+	// Enter invalid email id and valid password flow
+	public static void login_001() {
+		// Click on login button
+		WebElement loginbutton = new WebDriverWait(driver, Duration.ofSeconds(60))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(loginButton)));
+		loginbutton.click();
+
+		// Validate login page
+		WebElement login = driver.findElement(By.xpath(loginText));
+		String login_text = login.getText();
+		Assert.assertEquals(login_text, "LOGIN");
+
+		// Enter invalid email id
+		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
+		email.sendKeys("ramanjeneyulu.jmachint.com");
+
+		// Enter valid password
+		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
+		password.sendKeys("Machint@123");
+
+		// Click on sign in button
+		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
+		signIn.click();
+
+		// validate invalid email address
+		actual = driver.findElement(By.xpath(invalid_email_address)).getText();
+		expected = "invalid email address";
+		Assert.assertEquals(actual, expected);
+
+		// Page refreshing
+		driver.navigate().refresh();
+	}
+
+	// Enter valid email id and invalid password
+	public static void login_002() {
+		// enter valid email id
+		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
+		email.sendKeys("ramanjeneyulu.j@machint.com");
+
+		// Enter invalid password
+		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
+		password.sendKeys("Machint123");
+
+		// Click on sign in button
+		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
+		signIn.click();
+
+		// Validate for incorrect details text
+		actual = driver.findElement(By.xpath(incorrect_details)).getText();
+		expected = "Incorrect Details";
+		Assert.assertEquals(actual, expected);
+
+		// Page refreshing
+		driver.navigate().refresh();
+	}
+
+	// Enter invalid email id and invalid password
+	public static void login_003() {
+		// Enter invalid email id
+		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
+		email.sendKeys("ramanjeneyumachint.com");
+
+		// Enter invalid password
+		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
+		password.sendKeys("Mach123");
+
+		// Click on sign in button
+		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
+		signIn.click();
+
+		// Validate for invalid email address details text
+		actual = driver.findElement(By.xpath(invalid_email_address)).getText();
+		expected = "invalid email address";
+		Assert.assertEquals(actual, expected);
+
+		// Page refreshing
+		driver.navigate().refresh();
+	}
+
+	// Enter numerical values in email id field and valid password
+	public static void login_004()  {
+
+		// Enter numerical values in email id field
+		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
+		email.sendKeys("5758689699");
+
+		// Enter valid password
+		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
+		password.sendKeys("Machint@123");
+
+		// Click on sign in button
+		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
+		signIn.click();
+
+		// Validate for incorrect details text
+		actual = driver.findElement(By.xpath(invalid_email_address)).getText();
+		expected = "invalid email address";
+		Assert.assertEquals(actual, expected);
+
+		// Page refreshing
+		driver.navigate().refresh();
+	}
+
+//  Enter valid email id and enter password field as numerical values
+	public static void login_005() {
+		// Enter valid email ID
+		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
+		email.sendKeys("ramanjeneyulu.j@machint.com");
+
+		// Enter numerical values in password field
+		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
+		password.sendKeys("686123");
+
+		// Click on signin
+		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
+		signIn.click();
+
+		// Validate for incorrect details text
+		actual = driver.findElement(By.xpath(incorrect_details)).getText();
+		expected = "Incorrect Details";
+		Assert.assertEquals(actual, expected);
+
+		// Page refreshing
+		driver.navigate().refresh();
+	}
+
+//  Enter numerical values to email Id and password field
+	public static void login_006() {
+
+		// Enter numerical values in email id field
+		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
+		email.sendKeys("686697979");
+
+		// Enter numerical values in password field
+		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
+		password.sendKeys("686123");
+
+		// Click on signin
+		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
+		signIn.click();
+		
+		// Validate for invalid email address text
+		actual = driver.findElement(By.xpath(invalid_email_address)).getText();
+		expected = "invalid email address";
+		Assert.assertEquals(actual, expected);
+
+		// Page refreshing
+		driver.navigate().refresh();
+	}
+
+//  In email id field as blank and enter valid password
+	public static void login_007() {
+
+		// Enter email ID as blank
+		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
+		email.sendKeys("");
+
+		// Enter valid password
+		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
+		password.sendKeys("Machint@123");
+
+		// Click on signin
+		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
+		signIn.click();
+
+		// Validate for required text
+		actual = driver.findElement(By.xpath(required)).getText();
+		expected = "Required !!";
+		Assert.assertEquals(actual, expected);
+
+		// Page refreshing
+		driver.navigate().refresh();
+	}
+
+	// Enter valid email id and password field as blank
+	public static void login_008() {
+
+		// Enter valid email ID
+		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
+		email.sendKeys("ramanjeneyulu.j@machint.com");
+
+		// Enter password field as blank
+		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
+		password.sendKeys("");
+
+		// Click on signin
+		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
+		signIn.click();
+
+		// Validate for required text
+		actual = driver.findElement(By.xpath(required)).getText();
+		expected = "Required !!";
+		Assert.assertEquals(actual, expected);
+
+		// Page refreshing
+		driver.navigate().refresh();
+	}
+
+//  Without enter email id and password fields
+	public static void login_009() {
+
+		// Enter email ID as blank
+		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
+		email.sendKeys("");
+
+		// Enter password as blank
+		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
+		password.sendKeys("");
+
+		// Click on signin
+		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
+		signIn.click();
+
+		// Validate for required text
+		actual = driver.findElement(By.xpath(required)).getText();
+		expected = "Required !!";
+		Assert.assertEquals(actual, expected);
+
+		// Page refreshing
+		driver.navigate().refresh();
+	}
+
+	// Enter special characters in email id field and valid password
+	public static void login_010() {
+
+		// Enter special characters in email ID
+		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
+		email.sendKeys("(&*&*%#!@$^");
+
+		// Enter valid password
+		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
+		password.sendKeys("Machint@123");
+
+		// Click on signin
+		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
+		signIn.click();
+
+		// Validate for invalid email address text
+		actual = driver.findElement(By.xpath(invalid_email_address)).getText();
+		expected = "invalid email address";
+		Assert.assertEquals(actual, expected);
+
+		// Page refreshing
+		driver.navigate().refresh();
+	}
+
+	// Enter valid email id and enter special characters in password field
+	public static void login_011() {
+
+		// Enter valid email ID
+		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
+		email.sendKeys("ramanjeneyulu.j@machint.com");
+
+		// Enter special characters in password field
+		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
+		password.sendKeys("(^%&%!#%&^*");
+
+		// Click on signin
+		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
+		signIn.click();
+
+		// Validate for incorrect details text
+		actual = driver.findElement(By.xpath(incorrect_details)).getText();
+		expected = "Incorrect Details";
+		Assert.assertEquals(actual, expected);
+
+		// Page refreshing
+		driver.navigate().refresh();
+	}
+
+	// Enter special characters in Email id and password field
+	public static void login_012() {
+
+		// Enter special characters in email ID
+		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
+		email.sendKeys(")*(&*%^@#$%^");
+
+		// Enter special characters in password field
+		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
+		password.sendKeys("(^%&%!#%&^*");
+
+		// Click on signin
+		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
+		signIn.click();
+
+		// Validate for invalid email address text
+		actual = driver.findElement(By.xpath(invalid_email_address)).getText();
+		expected = "invalid email address";
+		Assert.assertEquals(actual, expected);
+
+		// Page refreshing
+		driver.navigate().refresh();
+	}
+
+	// 13 Enter valid login credentials
+	public static void login_013() {
+
+		// Enter valid email ID
+		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
+		email.sendKeys("dev440@gmail.com");
+
+		// Enter valid password
+		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
+		password.sendKeys("Machint@123");
+
+		// Click on signin
+		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
+		signIn.click();
+
+		// Validate my company dashboard text
+		actual = driver.findElement(By.xpath(myCompanyDashboard)).getText();
+		expected = "My Company Dashboard";
+		Assert.assertEquals(actual, expected);
 	}
 
 	public static void login() throws Exception {
@@ -47,7 +405,7 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		// Enter email ID
 		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
-		email.sendKeys("test12345@gmail.com");
+		email.sendKeys("dev440@gmail.com");
 
 		// Enter password
 		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
@@ -59,7 +417,7 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
 		signIn.click();
 
-		Thread.sleep(20000);
+		Thread.sleep(30000);
 
 		// Validate My Company Dashboard
 		WebElement dashboard = new WebDriverWait(driver, Duration.ofSeconds(30))
@@ -73,7 +431,7 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		WebElement businessareas = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.elementToBeClickable(By.xpath(businessAreas)));
 
-		new Actions(driver).moveToElement(businessareas);
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", businessareas);
 		businessareas.click();
 
 		// Click on Financial Management
@@ -488,7 +846,7 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		// Click on Are Corporation tax payments made on time
 		// 9 = 1, 10 = 3, 11 = 7, 12 = 10
 		WebElement hmrc_003 = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.elementToBeClickable(By.xpath(hmrc002)));
+				.until(ExpectedConditions.elementToBeClickable(By.xpath(hmrc003)));
 		hmrc_003.click();
 
 		// Click on next button

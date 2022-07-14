@@ -1,9 +1,9 @@
 Feature: Business Areas 
 
-Scenario: Business areas flow 
+Scenario: Verify user is able to Business areas flow calculations
 
 	Given user navigates to url 
-	When user login sucessfully with valid credentials
+	Given user login sucessfully with valid credentials
 	And user click on bussiness areas and Click on Start Financial Management Questionnaire button in Financial Management page
 	And user is able to click on next button clicking on all answers in Management Information
 	And user is able to click on next button clicking on all answers in Forecasting P&L and cashflow
@@ -16,4 +16,3 @@ Scenario: Business areas flow
 	And user is able to click on submit button clicking on all answers in Finance
 	Then user validate Your Business Overview, using our AI-based Scoring values
 	And user close the broswer
-	

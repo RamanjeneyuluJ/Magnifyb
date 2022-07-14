@@ -8,6 +8,13 @@ public class MagnifyBObjects {
 	public static String emailIDTextField = "//input[@name='username']";
 	public static String passwordTextField = "//input[@name='password']";
 	public static String signinButton = "//div[text()='Sign in']";
+
+	// Login validation message
+	public static String invalid_email_address = "//span[text()='invalid email address']";
+	public static String incorrect_details = "//div[text()='Incorrect Details']";
+	public static String required = "//span[text()='Required !!']";
+
+	// Business Areas
 	public static String myCompanyDashboard = "//div[text()='My Company Dashboard']";
 	public static String businessAreas = "(//*[local-name()='svg'])[4]";
 	public static String financialManagement = "//span[text()='Financial Management']";
@@ -65,15 +72,15 @@ public class MagnifyBObjects {
 	public static String payroll003 = "(//div[contains(@class, 'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6')])[12]";
 	public static String payroll004 = "(//div[contains(@class, 'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6')])[16]";
 	public static String payroll005 = "(//div[contains(@class, 'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6')])[20]";
-	
-	//Stock Management
+
+	// Stock Management
 	public static String stockManagementButton = "//span[text()='Stock Management']";
 	public static String stockManagement = "//div[text()='Stock Management']";
 	public static String sm001 = "(//div[contains(@class, 'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6')])[3]";
 	public static String sm002 = "(//div[contains(@class, 'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6')])[7]";
 	public static String sm003 = "(//div[contains(@class, 'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6')])[11]";
 	public static String sm004 = "(//div[contains(@class, 'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6')])[15]";
-	public static String sm005 = "(//div[contains(@class, 'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6')])[19]";	
+	public static String sm005 = "(//div[contains(@class, 'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6')])[19]";
 
 	// HMRC-Payments
 	public static String hmrcButton = "//span[text()='HMRC - Payments']";
@@ -93,15 +100,15 @@ public class MagnifyBObjects {
 	public static String fa006 = "(//div[contains(@class, 'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6')])[24]";
 	public static String fa007 = "(//div[contains(@class, 'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6')])[25]";
 
-	//Finance
+	// Finance
 	public static String financeButton = "//span[text()='Finance']";
 	public static String financetext = "//div[text()='Finance']";
 	public static String fi001 = "(//div[contains(@class, 'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6')])[1]";
 	public static String fi002 = "(//div[contains(@class, 'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6')])[6]";
 	public static String fi003 = "(//div[contains(@class, 'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6')])[11]";
 	public static String submitButton = "//div[text()='Submit']";
-	
-	//Your Business Overview, using our AI-based Scoring
+
+	// Your Business Overview, using our AI-based Scoring
 	public static String overview = "//div[text()='Your Business Overview, using our AI-based Scoring']";
 
 }
