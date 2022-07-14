@@ -40,7 +40,7 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 	// Enter invalid email id and valid password flow
 	public static void login_001() {
 		// Click on login button
-		WebElement loginbutton = new WebDriverWait(driver, Duration.ofSeconds(60))
+		WebElement loginbutton = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(loginButton)));
 		loginbutton.click();
 
@@ -417,7 +417,7 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
 		signIn.click();
 
-		Thread.sleep(30000);
+		Thread.sleep(50000);
 
 		// Validate My Company Dashboard
 		WebElement dashboard = new WebDriverWait(driver, Duration.ofSeconds(30))
@@ -430,7 +430,6 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		// Click on business areas
 		WebElement businessareas = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.elementToBeClickable(By.xpath(businessAreas)));
-
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", businessareas);
 		businessareas.click();
 

@@ -3,7 +3,7 @@ package com.magnifyb.objectrepository;
 public class MagnifyBObjects {
 
 	// Login
-	public static String loginButton = "//span[@class='MuiButton-label']/div[text()='Login']";
+	public static String loginButton = "//button[@type='button']//div[text()='Login']";
 	public static String loginText = "//div[text()='LOGIN']";
 	public static String emailIDTextField = "//input[@name='username']";
 	public static String passwordTextField = "//input[@name='password']";
