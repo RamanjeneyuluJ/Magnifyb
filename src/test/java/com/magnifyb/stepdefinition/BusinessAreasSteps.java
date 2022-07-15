@@ -13,11 +13,6 @@ public class BusinessAreasSteps extends MagnifybBusinessFunctions {
 //		navigateUrl();
 //	}
 
-	@When("user login sucessfully with valid credentials")
-	public void user_login_sucessfully_with_valid_credentials() throws Exception {
-		login(null, null);
-	}
-
 	@When("user click on bussiness areas and Click on Start Financial Management Questionnaire button in Financial Management page")
 	public void user_click_on_bussiness_areas_and_click_on_start_financial_management_questionnaire_button_in_financial_management_page() {
 		businessAreas();

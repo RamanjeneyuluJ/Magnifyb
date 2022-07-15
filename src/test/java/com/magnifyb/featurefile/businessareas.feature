@@ -4,7 +4,7 @@ Scenario: Verify user is able to Business areas flow calculations
 
 	Given user navigates to url 
 	When user click on login button 
-	And user login into the application invalid email id "test12345@gmail.com" and valid password "Machint@123" 
+	And user login into the application invalid email id "dev441@gmail.com" and valid password "Machint@123" 
 	Then user validate my company dashboard message 
 	And user click on bussiness areas and Click on Start Financial Management Questionnaire button in Financial Management page
 	Then user validate Management Information

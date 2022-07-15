@@ -19,9 +19,9 @@ public class LoginSteps extends MagnifybBusinessFunctions {
 	}
 
 	@When("user login into the application invalid email id {string} and valid password {string}")
-	public void user_login_into_the_application_invalid_email_id_and_valid_password(String string, String string2)
+	public void user_login_into_the_application_invalid_email_id_and_valid_password(String eamilID, String password)
 			throws Exception {
-		login(string, string2);
+		login(eamilID, password);
 	}
 
 	@Then("user validate invalid email address message")
@@ -42,6 +42,7 @@ public class LoginSteps extends MagnifybBusinessFunctions {
 	@Then("user validate my company dashboard message")
 	public void user_validate_my_company_dashboard_message() throws Exception {
 		companyDashboard();
+		Thread.sleep(50000);
 	}
 
 	@Then("user close the browser")

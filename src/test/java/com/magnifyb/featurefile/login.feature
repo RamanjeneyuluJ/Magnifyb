@@ -8,7 +8,7 @@ Scenario:
 	And user login into the application invalid email id "durga440gmail.com" and valid password "Machint@123" 
 	Then user validate invalid email address message 
 	And user close the browser 
-	
+
 Scenario: 
 	Verify user is able to getting validation message when valid email id and invalid password in login page 
 
@@ -121,7 +121,7 @@ Scenario: Verify user is login with valid credentials
 
 	Given user navigates to url 
 	When user click on login button 
-	And user login into the application invalid email id "test12345@gmail.com" and valid password "Machint@123" 
+	And user login into the application invalid email id "dev440@gmail.com" and valid password "Machint@123" 
 	Then user validate my company dashboard message 
 	And user close the browser 
 	

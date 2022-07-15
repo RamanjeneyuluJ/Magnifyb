@@ -8,7 +8,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -21,10 +20,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class MagnifybBusinessFunctions extends MagnifyBObjects {
 
 	public static WebDriver driver;
-
 	public static String actual, expected;
-	
-	public static String url = "https://magnifywebtest.machint.com/home";
+	public static String url = "https://magnify.machint.com/home";
 
 	public static int xpath1 = 1, xpath2 = 3, xpath3 = 7, xpath4 = 10, xpath5 = 1, xpath6 = 3, xpath7 = 7, xpath8 = 10,
 			xpath9 = 1, xpath10 = 3, xpath11 = 7, xpath12 = 10, xpath13 = 1, xpath14 = 3, xpath15 = 7, xpath16 = 10,
@@ -48,8 +45,9 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 
 		// Validate login page
 		WebElement login = driver.findElement(By.xpath(loginText));
-		String login_text = login.getText();
-		Assert.assertEquals(login_text, "LOGIN");
+		actual = login.getText();
+		expected = "LOGIN";
+		Assert.assertEquals(actual, expected);
 	}
 
 	// Enter email id and password flow and click on sign in button
@@ -69,7 +67,7 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
 		signIn.click();
-		
+
 		Thread.sleep(2000);
 	}
 
@@ -107,13 +105,16 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		actual = dashboard.getText();
 		expected = "My Company Dashboard";
 		Assert.assertEquals(actual, expected);
-		
-		Thread.sleep(20000);
 	}
 
-	//close browser 
+	// close browser
 	public static void close() {
 		driver.close();
+	}
+
+	public static void progressBar() {
+		new WebDriverWait(driver, Duration.ofSeconds(100))
+				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@role='progressbar']")));
 	}
 
 	public static void businessAreas() {
@@ -122,7 +123,7 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 				.until(ExpectedConditions.elementToBeClickable(By.xpath(businessAreas)));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", businessareas);
 		businessareas.click();
-		
+
 		// Click on Financial Management
 		WebElement financialmanagement = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(financialManagement)));
@@ -139,8 +140,9 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		// Validate Management Information button
 		WebElement managementInformationButton = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(managementInfoButton)));
-		String managementInformation_text = managementInformationButton.getText();
-		Assert.assertEquals(managementInformation_text, "Management Information");
+		actual = managementInformationButton.getText();
+		expected = "Management Information";
+		Assert.assertEquals(actual, expected);
 
 		Thread.sleep(2000);
 
@@ -148,11 +150,11 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		WebElement managementinformationText = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(managementInfo)));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", managementinformationText);
-		String managementInformation_Text = managementinformationText.getText();
-		Assert.assertEquals(managementInformation_Text, "Management Information");
+		actual = managementinformationText.getText();
+		Assert.assertEquals(actual, expected);
 	}
 
-	//Management information questions
+	// Management information questions
 	public static void managementInformation() throws Exception {
 
 		// Click on for How often do you prepare Management Accounts
@@ -215,20 +217,21 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		// Validate Forecasting P&L and cash flow button
 		WebElement foreCastingButton = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(forecastingButton)));
-		String foreCasting_text = foreCastingButton.getText();
-		Assert.assertEquals(foreCasting_text, "Forecasting P&L and cashflow");
+		actual = foreCastingButton.getText();
+		expected = "Forecasting P&L and cashflow";
+		Assert.assertEquals(actual, expected);
 
 		Thread.sleep(2000);
 
 		// Validate Forecasting P&L and cash flow
 		WebElement forecastingText = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(forecasting)));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", forecasting);
-		String forecasting_Text = forecastingText.getText();
-		Assert.assertEquals(forecasting_Text, "Forecasting P&L and cashflow");
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", forecastingText);
+		actual = forecastingText.getText();
+		Assert.assertEquals(actual, expected);
 	}
 
-	//fore casting questions
+	// fore casting questions
 	public static void forecasting() throws Exception {
 
 		// Click on for Do you prepare a P&L forecast looking at the F/Y year ahead
@@ -266,8 +269,9 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		// Validate Debtor Management button
 		WebElement debtormanagementButton = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(debtorManagementButton)));
-		String debtormanagement_text = debtormanagementButton.getText();
-		Assert.assertEquals(debtormanagement_text, "Debtor Management");
+		actual = debtormanagementButton.getText();
+		expected = "Debtor Management";
+		Assert.assertEquals(actual, expected);
 
 		Thread.sleep(2000);
 
@@ -275,11 +279,11 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		WebElement debtorManagementText = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(debtorManagement)));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", debtorManagementText);
-		String debtormanagement_Text = debtorManagementText.getText();
-		Assert.assertEquals(debtormanagement_Text, "Debtor Management");
+		actual = debtorManagementText.getText();
+		Assert.assertEquals(actual, expected);
 	}
 
-	//debtor management questions
+	// debtor management questions
 	public static void debtorManagement() throws Exception {
 
 		// Click on Do you have robust & effective terms & conditions of Sale including
@@ -348,8 +352,9 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		// Validate Creditor Management button
 		WebElement creditormanagementButton = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(creditorManagementButton)));
-		String creditormanagement_text = creditormanagementButton.getText();
-		Assert.assertEquals(creditormanagement_text, "Creditor Management");
+		actual = creditormanagementButton.getText();
+		expected = "Creditor Management";
+		Assert.assertEquals(actual, expected);
 
 		Thread.sleep(2000);
 
@@ -357,11 +362,11 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		WebElement creditormanagementText = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(creditorManagement)));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", creditormanagementText);
-		String creditormanagement_Text = creditormanagementText.getText();
-		Assert.assertEquals(creditormanagement_Text, "Creditor Management");
+		actual = creditormanagementText.getText();
+		Assert.assertEquals(actual, expected);
 	}
 
-	//Creditor Management questions
+	// Creditor Management questions
 	public static void creditorManagement() throws Exception {
 
 		// Click on How long do you take to pay creditors?
@@ -407,13 +412,14 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		next.click();
 	}
 
-	//Validate payroll
+	// Validate payroll
 	public static void validatePayroll() throws Exception {
 		// Validate Payroll / HR /Staff Management button
 		WebElement payrollbutton = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(payrollButton)));
-		String payroll_text = payrollbutton.getText();
-		Assert.assertEquals(payroll_text, "Payroll / HR /Staff Management");
+		actual = payrollbutton.getText();
+		expected = "Payroll / HR /Staff Management";
+		Assert.assertEquals(actual, expected);
 
 		Thread.sleep(2000);
 
@@ -421,11 +427,11 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		WebElement payrollText = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(payroll)));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", payrollText);
-		String payroll_Text = payrollText.getText();
-		Assert.assertEquals(payroll_Text, "Payroll / HR /Staff Management");
+		actual = payrollText.getText();
+		Assert.assertEquals(actual, expected);
 	}
 
-	//payroll questions
+	// payroll questions
 	public static void payroll() throws Exception {
 
 		// Click on Do you have processes to ensure that employees are completing tasks
@@ -433,7 +439,6 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		// 1 = 1, 2 = 3, 3 = 7, 4 = 10
 		WebElement payroll_001 = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.elementToBeClickable(By.xpath(payroll001)));
-		new Actions(driver).moveToElement(payroll_001);
 		payroll_001.click();
 
 		// Click on Do you have processes to monitor productivity by employees? E.g.
@@ -469,13 +474,14 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		next.click();
 	}
 
-	//Validate stock management
+	// Validate stock management
 	public static void validateStockManagement() throws Exception {
 		// Validate Stock Management button
 		WebElement stockmanagementButton = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(stockManagementButton)));
-		String stockManagement_text = stockmanagementButton.getText();
-		Assert.assertEquals(stockManagement_text, "Stock Management");
+		actual = stockmanagementButton.getText();
+		expected = "Stock Management";
+		Assert.assertEquals(actual, expected);
 
 		Thread.sleep(2000);
 
@@ -483,11 +489,11 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		WebElement stockmanagementText = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(stockManagement)));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", stockmanagementText);
-		String stockManagement_Text = stockmanagementText.getText();
-		Assert.assertEquals(stockManagement_Text, "Stock Management");
+		actual = stockmanagementText.getText();
+		Assert.assertEquals(actual, expected);
 	}
 
-	//Stock management questions
+	// Stock management questions
 	public static void stockManagement() throws Exception {
 
 		// Click on Do you have processes to manage stock holding levels?
@@ -528,13 +534,14 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		next.click();
 	}
 
-	// Validate HMRC-Payments 
+	// Validate HMRC-Payments
 	public static void validateHMRC() throws Exception {
 		// Validate HMRC-Payments button
 		WebElement hmrcPaymentsButton = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(hmrcButton)));
-		String hmrcPayments_text = hmrcPaymentsButton.getText();
-		Assert.assertEquals(hmrcPayments_text, "HMRC - Payments");
+		actual = hmrcPaymentsButton.getText();
+		expected = "HMRC - Payments";
+		Assert.assertEquals(actual, expected);
 
 		Thread.sleep(2000);
 
@@ -542,11 +549,11 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		WebElement hmrcPaymentsText = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(hmrc)));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", hmrcPaymentsText);
-		String hmrcPayments_Text = hmrcPaymentsText.getText();
-		Assert.assertEquals(hmrcPayments_Text, "HMRC - Payments");
+		actual = hmrcPaymentsText.getText();
+		Assert.assertEquals(actual, expected);
 	}
 
-	//HMRC-Payments questions
+	// HMRC-Payments questions
 	public static void hmrc() throws Exception {
 
 		// Click on Fixed Assets / Capital Expenditure
@@ -578,8 +585,9 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		// Validate Fixed Assets / Capital Expenditure button
 		WebElement fixedAssetsbutton = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(fixedAssetsButton)));
-		String fixedAssets_text = fixedAssetsbutton.getText();
-		Assert.assertEquals(fixedAssets_text, "Fixed Assets / Capital Expenditure");
+		actual = fixedAssetsbutton.getText();
+		expected = "Fixed Assets / Capital Expenditure";
+		Assert.assertEquals(actual, expected);
 
 		Thread.sleep(2000);
 
@@ -587,11 +595,11 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		WebElement fixedassetsText = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(fixedAssets)));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", fixedassetsText);
-		String fixedAssets_Text = fixedassetsText.getText();
-		Assert.assertEquals(fixedAssets_Text, "Fixed Assets / Capital Expenditure");
+		actual = fixedassetsText.getText();
+		Assert.assertEquals(actual, expected);
 	}
 
-	//Fixed Assets / Capital Expenditure Questions
+	// Fixed Assets / Capital Expenditure Questions
 	public static void fixedAssets() throws Exception {
 
 		// Click on Does your Fixed asset register agree with the Balance Sheet?
@@ -651,8 +659,9 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		// Validate Finance Button
 		WebElement financebutton = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(financeButton)));
-		String Finance_text = financebutton.getText();
-		Assert.assertEquals(Finance_text, "Finance");
+		actual = financebutton.getText();
+		expected = "Finance";
+		Assert.assertEquals(actual, expected);
 
 		Thread.sleep(2000);
 
@@ -660,8 +669,8 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		WebElement financeText = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(financetext)));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", financeText);
-		String Finance_Text = financeText.getText();
-		Assert.assertEquals(Finance_Text, "Finance");
+		actual = financeText.getText();
+		Assert.assertEquals(actual, expected);
 	}
 
 	// Finance Questions
@@ -693,15 +702,16 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		Thread.sleep(2000);
 	}
 
-	//Validate business score
+	// Validate business score
 	public static void businessScore() {
 
 		// Validate Your Business Overview, using our AI-based Scoring
 		WebElement overView = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(overview)));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", overView);
-		String overView_text = overView.getText();
-		Assert.assertEquals(overView_text, "Your Business Overview, using our AI-based Scoring");
+		actual = overView.getText();
+		expected = "Your Business Overview, using our AI-based Scoring";
+		Assert.assertEquals(actual, expected);
 
 		int managementInformationCal = xpath1 + xpath8 + xpath12 + xpath16 + xpath20 + xpath24 + xpath28 + xpath32;
 		System.out.println(managementInformationCal);
@@ -723,7 +733,7 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		double creditorManagementScore = Math.round((creditorManagementCal / 60.0) * 100.0);
 		System.out.println("Creditor Management \t" + creditorManagementScore);
 
-		int payrollCal = xpath3 + xpath8 + xpath12 + xpath16 + xpath20;
+		int payrollCal = xpath1 + xpath8 + xpath12 + xpath16 + xpath20;
 		System.out.println(payrollCal);
 		double payrollScore = Math.ceil((payrollCal / 50.0) * 100.0);
 		System.out.println("Payroll / HR /Staff Management \t" + payrollScore);
