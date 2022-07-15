@@ -8,6 +8,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -22,6 +23,8 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 	public static WebDriver driver;
 
 	public static String actual, expected;
+	
+	public static String url = "https://magnifywebtest.machint.com/home";
 
 	public static int xpath1 = 1, xpath2 = 3, xpath3 = 7, xpath4 = 10, xpath5 = 1, xpath6 = 3, xpath7 = 7, xpath8 = 10,
 			xpath9 = 1, xpath10 = 3, xpath11 = 7, xpath12 = 10, xpath13 = 1, xpath14 = 3, xpath15 = 7, xpath16 = 10,
@@ -32,398 +35,85 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 	public static void navigateUrl() {
 		WebDriverManager.chromedriver().driverVersion("103.0.5060.114").setup();
 		driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
-		driver.get("https://magnify.machint.com/home");
+		driver.get(url);
 	}
 
-	// Enter invalid email id and valid password flow
-	public static void login_001() {
-		// Click on login button
+	public static void loginButton() {
 		WebElement loginbutton = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(loginButton)));
-		loginbutton.click();
+				.until(ExpectedConditions.elementToBeClickable(By.xpath(loginButton)));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", loginbutton);
+//		loginbutton.click();
 
 		// Validate login page
 		WebElement login = driver.findElement(By.xpath(loginText));
 		String login_text = login.getText();
 		Assert.assertEquals(login_text, "LOGIN");
-
-		// Enter invalid email id
-		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
-		email.sendKeys("ramanjeneyulu.jmachint.com");
-
-		// Enter valid password
-		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
-		password.sendKeys("Machint@123");
-
-		// Click on sign in button
-		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
-		signIn.click();
-
-		// validate invalid email address
-		actual = driver.findElement(By.xpath(invalid_email_address)).getText();
-		expected = "invalid email address";
-		Assert.assertEquals(actual, expected);
-
-		// Page refreshing
-		driver.navigate().refresh();
 	}
 
-	// Enter valid email id and invalid password
-	public static void login_002() {
-		// enter valid email id
+	// Enter email id and password flow and click on sign in button
+	public static void login(String emailID, String pw) throws Exception {
+
+		// Enter email id
 		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
-		email.sendKeys("ramanjeneyulu.j@machint.com");
-
-		// Enter invalid password
-		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
-		password.sendKeys("Machint123");
-
-		// Click on sign in button
-		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
-		signIn.click();
-
-		// Validate for incorrect details text
-		actual = driver.findElement(By.xpath(incorrect_details)).getText();
-		expected = "Incorrect Details";
-		Assert.assertEquals(actual, expected);
-
-		// Page refreshing
-		driver.navigate().refresh();
-	}
-
-	// Enter invalid email id and invalid password
-	public static void login_003() {
-		// Enter invalid email id
-		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
-		email.sendKeys("ramanjeneyumachint.com");
-
-		// Enter invalid password
-		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
-		password.sendKeys("Mach123");
-
-		// Click on sign in button
-		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
-		signIn.click();
-
-		// Validate for invalid email address details text
-		actual = driver.findElement(By.xpath(invalid_email_address)).getText();
-		expected = "invalid email address";
-		Assert.assertEquals(actual, expected);
-
-		// Page refreshing
-		driver.navigate().refresh();
-	}
-
-	// Enter numerical values in email id field and valid password
-	public static void login_004()  {
-
-		// Enter numerical values in email id field
-		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
-		email.sendKeys("5758689699");
-
-		// Enter valid password
-		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
-		password.sendKeys("Machint@123");
-
-		// Click on sign in button
-		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
-		signIn.click();
-
-		// Validate for incorrect details text
-		actual = driver.findElement(By.xpath(invalid_email_address)).getText();
-		expected = "invalid email address";
-		Assert.assertEquals(actual, expected);
-
-		// Page refreshing
-		driver.navigate().refresh();
-	}
-
-//  Enter valid email id and enter password field as numerical values
-	public static void login_005() {
-		// Enter valid email ID
-		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
-		email.sendKeys("ramanjeneyulu.j@machint.com");
-
-		// Enter numerical values in password field
-		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
-		password.sendKeys("686123");
-
-		// Click on signin
-		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
-		signIn.click();
-
-		// Validate for incorrect details text
-		actual = driver.findElement(By.xpath(incorrect_details)).getText();
-		expected = "Incorrect Details";
-		Assert.assertEquals(actual, expected);
-
-		// Page refreshing
-		driver.navigate().refresh();
-	}
-
-//  Enter numerical values to email Id and password field
-	public static void login_006() {
-
-		// Enter numerical values in email id field
-		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
-		email.sendKeys("686697979");
-
-		// Enter numerical values in password field
-		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
-		password.sendKeys("686123");
-
-		// Click on signin
-		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
-		signIn.click();
-		
-		// Validate for invalid email address text
-		actual = driver.findElement(By.xpath(invalid_email_address)).getText();
-		expected = "invalid email address";
-		Assert.assertEquals(actual, expected);
-
-		// Page refreshing
-		driver.navigate().refresh();
-	}
-
-//  In email id field as blank and enter valid password
-	public static void login_007() {
-
-		// Enter email ID as blank
-		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
-		email.sendKeys("");
-
-		// Enter valid password
-		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
-		password.sendKeys("Machint@123");
-
-		// Click on signin
-		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
-		signIn.click();
-
-		// Validate for required text
-		actual = driver.findElement(By.xpath(required)).getText();
-		expected = "Required !!";
-		Assert.assertEquals(actual, expected);
-
-		// Page refreshing
-		driver.navigate().refresh();
-	}
-
-	// Enter valid email id and password field as blank
-	public static void login_008() {
-
-		// Enter valid email ID
-		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
-		email.sendKeys("ramanjeneyulu.j@machint.com");
-
-		// Enter password field as blank
-		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
-		password.sendKeys("");
-
-		// Click on signin
-		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
-		signIn.click();
-
-		// Validate for required text
-		actual = driver.findElement(By.xpath(required)).getText();
-		expected = "Required !!";
-		Assert.assertEquals(actual, expected);
-
-		// Page refreshing
-		driver.navigate().refresh();
-	}
-
-//  Without enter email id and password fields
-	public static void login_009() {
-
-		// Enter email ID as blank
-		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
-		email.sendKeys("");
-
-		// Enter password as blank
-		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
-		password.sendKeys("");
-
-		// Click on signin
-		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
-		signIn.click();
-
-		// Validate for required text
-		actual = driver.findElement(By.xpath(required)).getText();
-		expected = "Required !!";
-		Assert.assertEquals(actual, expected);
-
-		// Page refreshing
-		driver.navigate().refresh();
-	}
-
-	// Enter special characters in email id field and valid password
-	public static void login_010() {
-
-		// Enter special characters in email ID
-		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
-		email.sendKeys("(&*&*%#!@$^");
-
-		// Enter valid password
-		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
-		password.sendKeys("Machint@123");
-
-		// Click on signin
-		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
-		signIn.click();
-
-		// Validate for invalid email address text
-		actual = driver.findElement(By.xpath(invalid_email_address)).getText();
-		expected = "invalid email address";
-		Assert.assertEquals(actual, expected);
-
-		// Page refreshing
-		driver.navigate().refresh();
-	}
-
-	// Enter valid email id and enter special characters in password field
-	public static void login_011() {
-
-		// Enter valid email ID
-		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
-		email.sendKeys("ramanjeneyulu.j@machint.com");
-
-		// Enter special characters in password field
-		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
-		password.sendKeys("(^%&%!#%&^*");
-
-		// Click on signin
-		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
-		signIn.click();
-
-		// Validate for incorrect details text
-		actual = driver.findElement(By.xpath(incorrect_details)).getText();
-		expected = "Incorrect Details";
-		Assert.assertEquals(actual, expected);
-
-		// Page refreshing
-		driver.navigate().refresh();
-	}
-
-	// Enter special characters in Email id and password field
-	public static void login_012() {
-
-		// Enter special characters in email ID
-		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
-		email.sendKeys(")*(&*%^@#$%^");
-
-		// Enter special characters in password field
-		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
-		password.sendKeys("(^%&%!#%&^*");
-
-		// Click on signin
-		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
-		signIn.click();
-
-		// Validate for invalid email address text
-		actual = driver.findElement(By.xpath(invalid_email_address)).getText();
-		expected = "invalid email address";
-		Assert.assertEquals(actual, expected);
-
-		// Page refreshing
-		driver.navigate().refresh();
-	}
-
-	// 13 Enter valid login credentials
-	public static void login_013() {
-
-		// Enter valid email ID
-		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
-		email.sendKeys("dev440@gmail.com");
-
-		// Enter valid password
-		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
-		password.sendKeys("Machint@123");
-
-		// Click on signin
-		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
-		signIn.click();
-
-		// Validate my company dashboard text
-		actual = driver.findElement(By.xpath(myCompanyDashboard)).getText();
-		expected = "My Company Dashboard";
-		Assert.assertEquals(actual, expected);
-	}
-
-	public static void login() throws Exception {
-		// Click on login button
-		WebElement loginbutton = new WebDriverWait(driver, Duration.ofSeconds(60))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(loginButton)));
-		loginbutton.click();
-
-		// Validate login page
-		WebElement login = driver.findElement(By.xpath(loginText));
-		String login_text = login.getText();
-		Assert.assertEquals(login_text, "LOGIN");
-
-		// Enter email ID
-		WebElement email = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailIDTextField)));
-		email.sendKeys("dev440@gmail.com");
+		email.sendKeys(emailID);
 
 		// Enter password
 		WebElement password = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordTextField)));
-		password.sendKeys("Machint@123");
+		password.sendKeys(pw);
 
 		// Click on sign in button
 		WebElement signIn = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(signinButton)));
 		signIn.click();
+		
+		Thread.sleep(2000);
+	}
 
-		Thread.sleep(50000);
+	// Validate for invalid email address text
+	public static void invalidEmailAddress() {
+		WebElement invalidEmailaddress = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(invalidEmailAddress)));
+		actual = invalidEmailaddress.getText();
+		expected = "invalid email address";
+		Assert.assertEquals(actual, expected);
+	}
 
-		// Validate My Company Dashboard
+	// Validate for incorrect details text
+	public static void incorrectDetails() {
+		WebElement incorrectDetails = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(incorrectdetails)));
+		actual = incorrectDetails.getText();
+		expected = "Incorrect Details";
+		Assert.assertEquals(actual, expected);
+	}
+
+	// Validate for required text
+	public static void requried() {
+		WebElement requriedText = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(required)));
+		actual = requriedText.getText();
+		expected = "Required !!";
+		Assert.assertEquals(actual, expected);
+	}
+
+	// Validate my company dash board text
+	public static void companyDashboard() throws Exception {
 		WebElement dashboard = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(myCompanyDashboard)));
-		String dashboard_text = dashboard.getText();
-		Assert.assertEquals(dashboard_text, "My Company Dashboard");
+		actual = dashboard.getText();
+		expected = "My Company Dashboard";
+		Assert.assertEquals(actual, expected);
+		
+		Thread.sleep(20000);
+	}
+
+	//close browser 
+	public static void close() {
+		driver.close();
 	}
 
 	public static void businessAreas() {
@@ -432,7 +122,7 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 				.until(ExpectedConditions.elementToBeClickable(By.xpath(businessAreas)));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", businessareas);
 		businessareas.click();
-
+		
 		// Click on Financial Management
 		WebElement financialmanagement = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(financialManagement)));
@@ -442,22 +132,28 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		WebElement managementQuestionnaire = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(questionnaire)));
 		managementQuestionnaire.click();
-
-		// Validate Management Information button
-		WebElement managementInformation = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(managementInfoButton)));
-		String managementInformation_text = managementInformation.getText();
-		Assert.assertEquals(managementInformation_text, "Management Information");
 	}
 
-	public static void managementInformation() throws Exception {
+	// Validate Management Information
+	public static void validateManagementInformation() throws Exception {
+		// Validate Management Information button
+		WebElement managementInformationButton = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(managementInfoButton)));
+		String managementInformation_text = managementInformationButton.getText();
+		Assert.assertEquals(managementInformation_text, "Management Information");
 
-		// Validate Management Information
-		WebElement managementinformation = new WebDriverWait(driver, Duration.ofSeconds(30))
+		Thread.sleep(2000);
+
+		// Validate Management Information text
+		WebElement managementinformationText = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(managementInfo)));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", managementinformation);
-		String managementInformation_Text = managementinformation.getText();
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", managementinformationText);
+		String managementInformation_Text = managementinformationText.getText();
 		Assert.assertEquals(managementInformation_Text, "Management Information");
+	}
+
+	//Management information questions
+	public static void managementInformation() throws Exception {
 
 		// Click on for How often do you prepare Management Accounts
 		// 1 = 1, 2 = 3, 3 = 7, 4 = 10
@@ -512,24 +208,28 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		WebElement next = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.elementToBeClickable(By.xpath(nextButton)));
 		next.click();
+	}
 
+	// Validate Forecasting P&L and cash flow
+	public static void validateForeCasting() throws Exception {
 		// Validate Forecasting P&L and cash flow button
-		WebElement foreCasting = new WebDriverWait(driver, Duration.ofSeconds(30))
+		WebElement foreCastingButton = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(forecastingButton)));
-		String foreCasting_text = foreCasting.getText();
+		String foreCasting_text = foreCastingButton.getText();
 		Assert.assertEquals(foreCasting_text, "Forecasting P&L and cashflow");
 
 		Thread.sleep(2000);
-	}
-
-	public static void forecasting() throws Exception {
 
 		// Validate Forecasting P&L and cash flow
-		WebElement forecasting = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(foreCasting)));
+		WebElement forecastingText = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(forecasting)));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", forecasting);
-		String forecasting_Text = forecasting.getText();
+		String forecasting_Text = forecastingText.getText();
 		Assert.assertEquals(forecasting_Text, "Forecasting P&L and cashflow");
+	}
+
+	//fore casting questions
+	public static void forecasting() throws Exception {
 
 		// Click on for Do you prepare a P&L forecast looking at the F/Y year ahead
 		// 1 = 1, 2 = 3, 3 = 7, 4 = 10
@@ -559,24 +259,28 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		WebElement next = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.elementToBeClickable(By.xpath(nextButton)));
 		next.click();
+	}
 
+	// Validate Debtor Management
+	public static void validateDebtorManagement() throws Exception {
 		// Validate Debtor Management button
-		WebElement debtormanagement = new WebDriverWait(driver, Duration.ofSeconds(30))
+		WebElement debtormanagementButton = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(debtorManagementButton)));
-		String debtormanagement_text = debtormanagement.getText();
+		String debtormanagement_text = debtormanagementButton.getText();
 		Assert.assertEquals(debtormanagement_text, "Debtor Management");
 
 		Thread.sleep(2000);
-	}
-
-	public static void debtorManagement() throws Exception {
 
 		// Validate Debtor Management
-		WebElement debtormanagement = new WebDriverWait(driver, Duration.ofSeconds(30))
+		WebElement debtorManagementText = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(debtorManagement)));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", debtormanagement);
-		String forecasting_Text = debtormanagement.getText();
-		Assert.assertEquals(forecasting_Text, "Debtor Management");
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", debtorManagementText);
+		String debtormanagement_Text = debtorManagementText.getText();
+		Assert.assertEquals(debtormanagement_Text, "Debtor Management");
+	}
+
+	//debtor management questions
+	public static void debtorManagement() throws Exception {
 
 		// Click on Do you have robust & effective terms & conditions of Sale including
 		// payment terms, proven with customers
@@ -637,24 +341,28 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		WebElement next = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.elementToBeClickable(By.xpath(nextButton)));
 		next.click();
+	}
 
+	// Validate Creditor Management
+	public static void validateCreditorManagement() throws Exception {
 		// Validate Creditor Management button
-		WebElement creditormanagement = new WebDriverWait(driver, Duration.ofSeconds(30))
+		WebElement creditormanagementButton = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(creditorManagementButton)));
-		String creditormanagement_text = creditormanagement.getText();
+		String creditormanagement_text = creditormanagementButton.getText();
 		Assert.assertEquals(creditormanagement_text, "Creditor Management");
 
 		Thread.sleep(2000);
-	}
-
-	public static void creditorManagement() throws Exception {
 
 		// Validate Creditor Management
-		WebElement creditormanagement = new WebDriverWait(driver, Duration.ofSeconds(30))
+		WebElement creditormanagementText = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(creditorManagement)));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", creditormanagement);
-		String creditormanagement_text = creditormanagement.getText();
-		Assert.assertEquals(creditormanagement_text, "Creditor Management");
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", creditormanagementText);
+		String creditormanagement_Text = creditormanagementText.getText();
+		Assert.assertEquals(creditormanagement_Text, "Creditor Management");
+	}
+
+	//Creditor Management questions
+	public static void creditorManagement() throws Exception {
 
 		// Click on How long do you take to pay creditors?
 		// 1 = 1, 2 = 3, 3 = 7, 4 = 10
@@ -697,25 +405,28 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		WebElement next = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.elementToBeClickable(By.xpath(nextButton)));
 		next.click();
+	}
 
+	//Validate payroll
+	public static void validatePayroll() throws Exception {
 		// Validate Payroll / HR /Staff Management button
-		WebElement payroll = new WebDriverWait(driver, Duration.ofSeconds(30))
+		WebElement payrollbutton = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(payrollButton)));
-		String payroll_text = payroll.getText();
+		String payroll_text = payrollbutton.getText();
 		Assert.assertEquals(payroll_text, "Payroll / HR /Staff Management");
 
 		Thread.sleep(2000);
-	}
-
-	public static void payroll() throws Exception {
 
 		// Validate Payroll / HR /Staff Management
-		WebElement payrollHR = new WebDriverWait(driver, Duration.ofSeconds(30))
+		WebElement payrollText = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(payroll)));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", payrollHR);
-		Thread.sleep(500);
-		String payroll_text = payrollHR.getText();
-		Assert.assertEquals(payroll_text, "Payroll / HR /Staff Management");
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", payrollText);
+		String payroll_Text = payrollText.getText();
+		Assert.assertEquals(payroll_Text, "Payroll / HR /Staff Management");
+	}
+
+	//payroll questions
+	public static void payroll() throws Exception {
 
 		// Click on Do you have processes to ensure that employees are completing tasks
 		// to agreed times?
@@ -756,24 +467,28 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		WebElement next = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.elementToBeClickable(By.xpath(nextButton)));
 		next.click();
+	}
 
+	//Validate stock management
+	public static void validateStockManagement() throws Exception {
 		// Validate Stock Management button
-		WebElement stockManagement = new WebDriverWait(driver, Duration.ofSeconds(30))
+		WebElement stockmanagementButton = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(stockManagementButton)));
-		String stockManagement_text = stockManagement.getText();
+		String stockManagement_text = stockmanagementButton.getText();
 		Assert.assertEquals(stockManagement_text, "Stock Management");
 
 		Thread.sleep(2000);
-	}
-
-	public static void stockManagement() throws Exception {
 
 		// Validate Stock Management
-		WebElement stockmanagement = new WebDriverWait(driver, Duration.ofSeconds(30))
+		WebElement stockmanagementText = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(stockManagement)));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", stockmanagement);
-		String stockManagement_text = stockmanagement.getText();
-		Assert.assertEquals(stockManagement_text, "Stock Management");
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", stockmanagementText);
+		String stockManagement_Text = stockmanagementText.getText();
+		Assert.assertEquals(stockManagement_Text, "Stock Management");
+	}
+
+	//Stock management questions
+	public static void stockManagement() throws Exception {
 
 		// Click on Do you have processes to manage stock holding levels?
 		// 1 = 1, 2 = 3, 3 = 7, 4 = 10
@@ -811,24 +526,28 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		WebElement next = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.elementToBeClickable(By.xpath(nextButton)));
 		next.click();
+	}
 
+	// Validate HMRC-Payments 
+	public static void validateHMRC() throws Exception {
 		// Validate HMRC-Payments button
-		WebElement hmrcPayments = new WebDriverWait(driver, Duration.ofSeconds(30))
+		WebElement hmrcPaymentsButton = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(hmrcButton)));
-		String hmrcPayments_text = hmrcPayments.getText();
+		String hmrcPayments_text = hmrcPaymentsButton.getText();
 		Assert.assertEquals(hmrcPayments_text, "HMRC - Payments");
 
 		Thread.sleep(2000);
+
+		// Validate HMRC-Payments text
+		WebElement hmrcPaymentsText = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(hmrc)));
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", hmrcPaymentsText);
+		String hmrcPayments_Text = hmrcPaymentsText.getText();
+		Assert.assertEquals(hmrcPayments_Text, "HMRC - Payments");
 	}
 
+	//HMRC-Payments questions
 	public static void hmrc() throws Exception {
-
-		// Validate HMRC-Payments button
-		WebElement hmrcPayments = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(hmrc)));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", hmrcPayments);
-		String hmrcPayments_text = hmrcPayments.getText();
-		Assert.assertEquals(hmrcPayments_text, "HMRC - Payments");
 
 		// Click on Fixed Assets / Capital Expenditure
 		// 1 = 1, 2 = 3, 3 = 7, 4 = 10
@@ -852,24 +571,28 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		WebElement next = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.elementToBeClickable(By.xpath(nextButton)));
 		next.click();
+	}
 
+	// Validate Fixed Assets / Capital Expenditure
+	public static void validateFixedAssets() throws Exception {
 		// Validate Fixed Assets / Capital Expenditure button
-		WebElement fixedAssets = new WebDriverWait(driver, Duration.ofSeconds(30))
+		WebElement fixedAssetsbutton = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(fixedAssetsButton)));
-		String fixedAssets_text = fixedAssets.getText();
+		String fixedAssets_text = fixedAssetsbutton.getText();
 		Assert.assertEquals(fixedAssets_text, "Fixed Assets / Capital Expenditure");
 
 		Thread.sleep(2000);
-	}
-
-	public static void fixedAssets() throws Exception {
 
 		// Validate Fixed Assets / Capital Expenditure
-		WebElement fixedassets = new WebDriverWait(driver, Duration.ofSeconds(30))
+		WebElement fixedassetsText = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(fixedAssets)));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", fixedassets);
-		String fixedAssets_text = fixedassets.getText();
-		Assert.assertEquals(fixedAssets_text, "Fixed Assets / Capital Expenditure");
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", fixedassetsText);
+		String fixedAssets_Text = fixedassetsText.getText();
+		Assert.assertEquals(fixedAssets_Text, "Fixed Assets / Capital Expenditure");
+	}
+
+	//Fixed Assets / Capital Expenditure Questions
+	public static void fixedAssets() throws Exception {
 
 		// Click on Does your Fixed asset register agree with the Balance Sheet?
 		// 1 = 1, 2 = 3, 3 = 7, 4 = 10
@@ -910,7 +633,7 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 				.until(ExpectedConditions.elementToBeClickable(By.xpath(fa006)));
 		fa_006.click();
 
-		// Click on Do you regularly review the impact on cashflow of new Capital
+		// Click on Do you regularly review the impact on cash flow of new Capital
 		// Expenditure?
 		// 25 = 1, 26 = 3, 27 = 7, 28 = 10
 		WebElement fa_007 = new WebDriverWait(driver, Duration.ofSeconds(30))
@@ -921,25 +644,28 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		WebElement next = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.elementToBeClickable(By.xpath(nextButton)));
 		next.click();
+	}
 
+	// Validate Finance
+	public static void validateFinance() throws Exception {
 		// Validate Finance Button
-		WebElement Finance = new WebDriverWait(driver, Duration.ofSeconds(30))
+		WebElement financebutton = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(financeButton)));
-		String Finance_text = Finance.getText();
+		String Finance_text = financebutton.getText();
 		Assert.assertEquals(Finance_text, "Finance");
 
 		Thread.sleep(2000);
 
+		// Validate Finance
+		WebElement financeText = new WebDriverWait(driver, Duration.ofSeconds(30))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(financetext)));
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", financeText);
+		String Finance_Text = financeText.getText();
+		Assert.assertEquals(Finance_Text, "Finance");
 	}
 
+	// Finance Questions
 	public static void finance() throws Exception {
-
-		// Validate Finance
-		WebElement Finance = new WebDriverWait(driver, Duration.ofSeconds(30))
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(financetext)));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", Finance);
-		String Finance_text = Finance.getText();
-		Assert.assertEquals(Finance_text, "Finance");
 
 		// Click on How do you rate the usefulness of your Financial Information?
 		// 1 = 1, 2 = 3, 3 = 7, 4 = 10
@@ -967,9 +693,10 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		Thread.sleep(2000);
 	}
 
+	//Validate business score
 	public static void businessScore() {
 
-		// Validate Finance
+		// Validate Your Business Overview, using our AI-based Scoring
 		WebElement overView = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(overview)));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", overView);

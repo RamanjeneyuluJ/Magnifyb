@@ -1,21 +1,127 @@
-Feature: Business Areas 
+Feature: Login 
 
-@login 
-Scenario: Verify user is able to check login functionality 
+Scenario: 
+	verify user is able to getting validation message when  invalid email id and valid password in login page 
 
 	Given user navigates to url 
-	And user is able to Enter invalid email id and valid password flow 
-	And user is able to Enter valid email id and invalid password 
-	And  user is able to Enter invalid email id and invalid password 
-	And user is able to Enter numerical values in email id field and valid password 
-	And user is able to Enter valid email id and enter password field as numerical values 
-	And user is able to Enter numerical values to email Id and password field 
-	And user is able to In email id field as blank and enter valid password 
-	And user is able to Enter valid email id and password field as blank 
-	And user is able to Without enter email id and password fields 
-	And user is able to Enter special characters in email id field and valid password 
-	And user is able to Enter valid email id and enter special characters in password field 
-	And user is able to Enter special characters in Email id and password field 
-	And user is able to Enter login with valid credentials 
-	And user close the broswer
+	When user click on login button 
+	And user login into the application invalid email id "durga440gmail.com" and valid password "Machint@123" 
+	Then user validate invalid email address message 
+	And user close the browser 
+	
+Scenario: 
+	Verify user is able to getting validation message when valid email id and invalid password in login page 
+
+	Given user navigates to url 
+	When user click on login button 
+	And user login into the application invalid email id "durga440@gmail.com" and valid password "Machint123" 
+	Then user validate incorrect details message 
+	And user close the browser 
+	
+Scenario: 
+	Verify user is able to getting validation message when invalid email id and invalid password in login page
+
+	Given user navigates to url 
+	When user click on login button 
+	And user login into the application invalid email id "durga440gmail.com" and valid password "Machint123" 
+	Then user validate invalid email address message 
+	And user close the browser 
+	
+Scenario: 
+	Verify user is able to getting validation message when invalid email id and invalid password in login page
+
+	Given user navigates to url 
+	When user click on login button 
+	And user login into the application invalid email id "durga440gmail.com" and valid password "Machint123" 
+	Then user validate invalid email address message 
+	And user close the browser 
+	
+Scenario: 
+	Verify user is able to getting validation message when enter numerical value email id field and in login page 
+
+	Given user navigates to url 
+	When user click on login button 
+	And user login into the application invalid email id "12344445" and valid password "Machint123" 
+	Then user validate invalid email address message 
+	And user close the browser 
+	
+Scenario: 
+	Verify user is able to getting validation message when enter numerical value password field in login page 
+
+	Given user navigates to url 
+	When user click on login button 
+	And user login into the application invalid email id "durga440@gmail.com" and valid password "133445" 
+	Then user validate incorrect details message 
+	And user close the browser 
+	
+Scenario: 
+	Verify user is able to getting validation message when enter numberical values to email Id and password field in login page
+
+	Given user navigates to url 
+	When user click on login button 
+	And user login into the application invalid email id "56672567" and valid password "133445" 
+	Then user validate invalid email address message 
+	And user close the browser 
+	
+Scenario: 
+	Verify user is able to getting validation message when email id field in blank in login page
+
+	Given user navigates to url 
+	When user click on login button 
+	And user login into the application invalid email id "" and valid password "133445" 
+	Then user validate required message 
+	And user close the browser 
+	
+Scenario: 
+	Verify user is able to getting validation message when enter password field in blank in login page
+
+	Given user navigates to url 
+	When user click on login button 
+	And user login into the application invalid email id "test@gmail.com" and valid password "" 
+	Then user validate required message 
+	And user close the browser 
+	
+Scenario: 
+	Verify user is able to getting validation message when email id and password field in login page in login page
+
+	Given user navigates to url 
+	When user click on login button 
+	And user login into the application invalid email id "" and valid password "" 
+	Then user validate required message 
+	And user close the browser 
+	
+Scenario: 
+	Verify user is able to getting validation message when enter special characters in email id field and valid password in login page
+
+	Given user navigates to url 
+	When user click on login button 
+	And user login into the application invalid email id "*^%&%&%" and valid password "Machint@123" 
+	Then user validate invalid email address message 
+	And user close the browser 
+	
+Scenario: 
+	Verify user is able to getting validation message when enter valid email id and enter special characters in password field in login page
+
+	Given user navigates to url 
+	When user click on login button 
+	And user login into the application invalid email id "test@gmail.com" and valid password "(&*^%$^$^&" 
+	Then user validate incorrect details message 
+	And user close the browser 
+	
+Scenario: 
+	Verify user is able to getting validation message when enter special characters in Email id and password field in login page
+
+	Given user navigates to url 
+	When user click on login button 
+	And user login into the application invalid email id "(&*^%$^$^&" and valid password "(&*^%$^$^&" 
+	Then user validate invalid email address message 
+	And user close the browser 
+	
+Scenario: Verify user is login with valid credentials 
+
+	Given user navigates to url 
+	When user click on login button 
+	And user login into the application invalid email id "test12345@gmail.com" and valid password "Machint@123" 
+	Then user validate my company dashboard message 
+	And user close the browser 
 	

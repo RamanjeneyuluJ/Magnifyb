@@ -10,8 +10,8 @@ public class MagnifyBObjects {
 	public static String signinButton = "//div[text()='Sign in']";
 
 	// Login validation message
-	public static String invalid_email_address = "//span[text()='invalid email address']";
-	public static String incorrect_details = "//div[text()='Incorrect Details']";
+	public static String invalidEmailAddress = "//span[text()='invalid email address']";
+	public static String incorrectdetails = "//div[text()='Incorrect Details']";
 	public static String required = "//span[text()='Required !!']";
 
 	// Business Areas
@@ -35,7 +35,7 @@ public class MagnifyBObjects {
 
 	// Forecasting P&L and cash flow
 	public static String forecastingButton = "//span[text()='Forecasting P&L and cashflow']";
-	public static String foreCasting = "//div[text()='Forecasting P&L and cashflow']";
+	public static String forecasting = "//div[text()='Forecasting P&L and cashflow']";
 	public static String fc001 = "(//div[contains(@class, 'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6')])[2]";
 	public static String fc002 = "(//div[contains(@class, 'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6')])[6]";
 	public static String fc003 = "(//div[contains(@class, 'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6')])[10]";
@@ -110,5 +110,6 @@ public class MagnifyBObjects {
 
 	// Your Business Overview, using our AI-based Scoring
 	public static String overview = "//div[text()='Your Business Overview, using our AI-based Scoring']";
+	
 
 }
