@@ -121,21 +121,22 @@ Feature: Login
 	Given user navigates to url 
 	When user click on login button 
 	And user login into the application "<username>" and "<password>"
-	Then user validate my company dashboard message 
+	Then user validate "<message>" 
 	And user close the browser 
 	
-	Examples: |username|password|
-	| durga440gmail.com | Machint@123 |
-#	|durga440@gmail.com|Machint123|
-#	|durga440gmail.com|Machint123|
-#	|12344445|Machint123|
-#	|durga440@gmail.com|133445|
-#	|56672567|133445|
-#	| |133445|
-#	|test@gmail.com||
-#	|||
-#	|*^%&%&%|Machint@123|
-#	|test@gmail.com|(&*^%$^$^&|
-#	|(&*^%$^$^&|(&*^%$^$^&|
-#	|dev440@gmail.com|Machint@123|
+	Examples: 
+	| username 										| password 				 | message |
+	| durga440gmail.com 		| Machint@123 | invalid email address |
+	| durga440@gmail.com| Machint123		| Incorrect Details |
+	| durga440gmail.com		| Machint123		| invalid email address |
+	| 12344445										| Machint123		| invalid email addres |
+	| durga440@gmail.com| 133445 					| Incorrect Details |
+	| 56672567										| 133445 						| invalid email address |
+	| 																		| 133445 						| Required !! 	|
+	| test@gmail.com 				|													| Required !! |
+	| 																		| 												| Required !! |
+	| *^%&%&% 									| Machint@123 | invalid email address |
+	| test@gmail.com| (&*^%$^$^& | Incorrect Details |
+	| (&*^%$^$^& | (&*^%$^$^& | invalid email address |
+	| test12345@gmail.com | Machint@123| My Company Dashboard |
 	

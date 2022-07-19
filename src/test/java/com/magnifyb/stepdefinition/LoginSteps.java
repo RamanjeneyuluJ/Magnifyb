@@ -10,44 +10,26 @@ public class LoginSteps extends MagnifybBusinessFunctions {
 
 	@Given("user navigates to url")
 	public void user_navigates_to_url() {
-		navigateUrl();
+	    navigateUrl();
 	}
 
 	@When("user click on login button")
 	public void user_click_on_login_button() {
-		loginButton();
+	    loginButton();
 	}
 
-	@When("user login into the application invalid email id {string} and valid password {string}")
-	public void user_login_into_the_application_invalid_email_id_and_valid_password(String eamilID, String password)
-			throws Exception {
-		login(eamilID, password);
+	@When("user login into the application {string} and {string}")
+	public void user_login_into_the_application_and(String eamilID, String pw) throws Exception {
+	    login(eamilID, pw);
 	}
 
-	@Then("user validate invalid email address message")
-	public void user_validate_invalid_email_address_message() {
-		invalidEmailAddress();
-	}
-
-	@Then("user validate incorrect details message")
-	public void user_validate_incorrect_details_message() {
-		incorrectDetails();
-	}
-
-	@Then("user validate required message")
-	public void user_validate_required_message() {
-		requried();
-	}
-
-	@Then("user validate my company dashboard message")
-	public void user_validate_my_company_dashboard_message() throws Exception {
-		companyDashboard();
-		Thread.sleep(50000);
+	@Then("user validate {string}")
+	public void user_validate(String message) {
+	   validateMessage(message);
 	}
 
 	@Then("user close the browser")
-	public void user_close_the_broswer() {
-		close();
+	public void user_close_the_browser() {
+	    close();
 	}
-
 }

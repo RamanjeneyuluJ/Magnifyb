@@ -1,7 +1,6 @@
 package com.magnifyb.businessfunctions;
 
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -31,7 +30,7 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 	public static void navigateUrl() {
 		WebDriverManager.chromedriver().driverVersion("103.0.5060.114").setup();
 		driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		driver.manage().window().maximize();
 		driver.get(url);
 	}
@@ -70,6 +69,24 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 		Thread.sleep(2000);
 	}
 
+	public static void validateMessage(String message) {
+
+		switch (message) {
+		case "invalid email address":
+			invalidEmailAddress();
+			break;
+		case "Incorrect Details":
+			incorrectDetails();
+			break;
+		case "Required !!":
+			requried();
+			break;
+		case "My Company Dashboard":
+			companyDashboard();
+			break;
+		}
+	}
+
 	// Validate for invalid email address text
 	public static void invalidEmailAddress() {
 		WebElement invalidEmailaddress = new WebDriverWait(driver, Duration.ofSeconds(30))
@@ -98,7 +115,7 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 	}
 
 	// Validate my company dash board text
-	public static void companyDashboard() throws Exception {
+	public static void companyDashboard() {
 		WebElement dashboard = new WebDriverWait(driver, Duration.ofSeconds(30))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(myCompanyDashboard)));
 		actual = dashboard.getText();
