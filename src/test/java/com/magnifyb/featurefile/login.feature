@@ -129,7 +129,7 @@ Feature: Login
 	| durga440gmail.com 		| Machint@123 | invalid email address |
 	| durga440@gmail.com| Machint123		| Incorrect Details |
 	| durga440gmail.com		| Machint123		| invalid email address |
-	| 12344445										| Machint123		| invalid email addres |
+	| 12344445										| Machint123		| invalid email address |
 	| durga440@gmail.com| 133445 					| Incorrect Details |
 	| 56672567										| 133445 						| invalid email address |
 	| 																		| 133445 						| Required !! 	|
