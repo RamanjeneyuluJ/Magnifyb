@@ -25,7 +25,7 @@ public class MagnifybBusinessFunctions extends MagnifyBObjects {
 			xpath9 = 1, xpath10 = 3, xpath11 = 7, xpath12 = 10, xpath13 = 1, xpath14 = 3, xpath15 = 7, xpath16 = 10,
 			xpath17 = 1, xpath18 = 3, xpath19 = 7, xpath20 = 10, xpath21 = 1, xpath22 = 3, xpath23 = 7, xpath24 = 10,
 			xpath25 = 1, xpath26 = 3, xpath27 = 7, xpath28 = 10, xpath29 = 1, xpath30 = 3, xpath31 = 7, xpath32 = 10,
-			xpath33 = 1, xpath34 = 3, xpath35 = 7, xpath36 = 10;
+			xpath33 = 1, xpath34 = 3, xpath35 = 7, xpath36 = 10 ;
 
 	public static void navigateUrl() {
 		WebDriverManager.chromedriver().driverVersion("103.0.5060.114").setup();
